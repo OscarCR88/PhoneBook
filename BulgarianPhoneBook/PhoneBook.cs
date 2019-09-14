@@ -53,7 +53,7 @@ namespace BulgarianPhoneBook
         /// <returns></returns>
         private Boolean ValidatePhoneNumber(String number)
         {
-            string pattern = @"(\+359|0|00359)(87|88|89)([2-9])([\d]{6}$)";
+            string pattern = @"^(\+359|0|00359)(87|88|89)([2-9])([\d]{6}$)";
 
             Match result = Regex.Match(number, pattern);
 
