@@ -10,12 +10,12 @@ namespace BulgarianPhoneBook
         /// <summary>
         /// Phone's user name.
         /// </summary>
-        private String Name { get; set; }
+        public String Name { get; set; }
 
         /// <summary>
         /// Phone Number.
         /// </summary>
-        private String PhoneNumber { get; set; }
+        public String PhoneNumber { get; set; }
 
         /// <summary>
         /// Creates an object of type <see cref="PhoneBookEntry"/>.
@@ -28,7 +28,7 @@ namespace BulgarianPhoneBook
             if (String.IsNullOrEmpty(phoneNumber)) throw new ArgumentNullException("Phone Number must not be null or empty!");
 
             this.Name = name;
-            this.PhoneNumber = PhoneNumber;
+            this.PhoneNumber = phoneNumber;
         }
     }
 }
