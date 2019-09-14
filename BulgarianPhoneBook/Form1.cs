@@ -28,19 +28,44 @@ namespace BulgarianPhoneBook
                 try
                 {
                     this.phoneBook.LoadPhoneBook(openFileDialog1.FileName);
-                    var bindingList = new BindingList<PhoneBookEntry>(this.phoneBook.GetEntries());
-                    //phoneBookEntryBindingSource.Clear();
-                    phoneBookEntryBindingSource = new BindingSource( this.phoneBook.GetEntries(), null);
+                    phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
 
                     // Initialize the DataGridView.
-                  
                     dataGridView1.DataSource = phoneBookEntryBindingSource;
+                    textBox1.Text = textBox2.Text = "";
                 }
                 catch (SecurityException ex)
                 {
                     MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
                     $"Details:\n\n{ex.StackTrace}");
                 }
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var name = textBox2.Text;
+                this.phoneBook.DeletePairByName(name);
+                phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
+                dataGridView1.DataSource = phoneBookEntryBindingSource;
+            }
+            catch (Exception ex)
+            {
+                textBox1.Text += ex.Message;
+            }
+        }
+
+        private void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox2.Text.Length > 0)
+            {
+                button2.Enabled = true;
+            }
+            else
+            {
+                button2.Enabled = false;
             }
         }
     }
