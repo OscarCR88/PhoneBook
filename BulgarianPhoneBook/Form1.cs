@@ -70,5 +70,15 @@ namespace BulgarianPhoneBook
             phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
             dataGridView1.DataSource = phoneBookEntryBindingSource;
         }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            var list = this.phoneBook.GetSortedList();
+
+            foreach (var item in list)
+            {
+                textBox1.Text += $"{item.Name} {item.PhoneNumber} \r\n";
+            }
+        }
     }
 }

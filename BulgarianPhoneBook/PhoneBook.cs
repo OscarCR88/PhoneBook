@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace BulgarianPhoneBook
 {
@@ -45,6 +46,20 @@ namespace BulgarianPhoneBook
                 }
 
             }
+        }
+
+        /// <summary>
+        /// Returns a sorted list. 
+        /// </summary>
+        /// <param name="sort">Sort direction.</param>
+        /// <returns></returns>
+        public List<PhoneBookEntry> GetSortedList(SortOrder sort = SortOrder.Ascending)
+        {
+            if (sort == SortOrder.Ascending)
+            {
+                return this.PhoneList.OrderBy(n => n.Name).ToList();
+            }
+            return this.PhoneList.OrderByDescending(n => n.Name).ToList();
         }
 
         /// <summary>
