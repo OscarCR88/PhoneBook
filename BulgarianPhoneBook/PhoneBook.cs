@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace BulgarianPhoneBook
 {
@@ -37,9 +38,25 @@ namespace BulgarianPhoneBook
                 var name = splitted[0];
                 var number = splitted[1].Trim();
 
-                AddEntry(name, number);
+                if (ValidatePhoneNumber(number))
+                {
+                    AddEntry(name, number);
+                }
 
             }
+        }
+
+        /// <summary>
+        /// Validates the phone number to be a Bulgarian one.
+        /// </summary>
+        /// <returns></returns>
+        private Boolean ValidatePhoneNumber(String number)
+        {
+            string pattern = @"(\+359|0|00359)(87|88|89)([2-9])([\d]{6}$)";
+
+            Match result = Regex.Match(number, pattern);
+
+            return result.Success;
         }
 
         /// <summary>
