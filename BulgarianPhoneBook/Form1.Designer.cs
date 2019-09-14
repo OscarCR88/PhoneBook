@@ -35,10 +35,10 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneBookEntryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.phoneBookEntryBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +75,7 @@
             this.textBox1.Location = new System.Drawing.Point(12, 235);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox1.Size = new System.Drawing.Size(439, 161);
             this.textBox1.TabIndex = 2;
             // 
@@ -98,6 +98,16 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(313, 140);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(138, 23);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Print Sorted List";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
@@ -114,16 +124,6 @@
             // 
             this.phoneBookEntryBindingSource.AllowNew = true;
             this.phoneBookEntryBindingSource.DataSource = typeof(BulgarianPhoneBook.PhoneBookEntry);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(313, 140);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(138, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Print Sorted List";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
             // Form1
             // 

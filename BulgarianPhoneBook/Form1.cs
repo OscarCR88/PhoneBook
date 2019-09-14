@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BulgarianPhoneBook
@@ -49,7 +42,7 @@ namespace BulgarianPhoneBook
             }
             catch (Exception ex)
             {
-                textBox1.Text += ex.Message + "\r\n";
+                textBox1.AppendText( ex.Message + "\r\n");
             }
         }
 
@@ -77,7 +70,7 @@ namespace BulgarianPhoneBook
 
             foreach (var item in list)
             {
-                textBox1.Text += $"{item.Name} {item.PhoneNumber} \r\n";
+                textBox1.AppendText( $"{item.Name} {item.PhoneNumber} \r\n");
             }
         }
     }
