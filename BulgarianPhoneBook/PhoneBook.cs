@@ -28,6 +28,7 @@ namespace BulgarianPhoneBook
         /// <param name="filePath"></param>
         public void LoadPhoneBook(String filePath)
         {
+            this.PhoneList.Clear();
             // Read each line of the file into a string array. Each element
             // of the array is one line of the file.
             string[] lines = System.IO.File.ReadAllLines(@filePath);

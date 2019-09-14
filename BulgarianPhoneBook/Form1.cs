@@ -29,6 +29,7 @@ namespace BulgarianPhoneBook
                 {
                     this.phoneBook.LoadPhoneBook(openFileDialog1.FileName);
                     var bindingList = new BindingList<PhoneBookEntry>(this.phoneBook.GetEntries());
+                    //phoneBookEntryBindingSource.Clear();
                     phoneBookEntryBindingSource = new BindingSource( this.phoneBook.GetEntries(), null);
 
                     // Initialize the DataGridView.
