@@ -48,12 +48,22 @@ namespace BulgarianPhoneBook
         }
 
         /// <summary>
-        /// Removes the first occurrence, if any of a given name.
+        /// Returns a <see cref="PhoneBookEntry"/> object, if exists. Case sensitive.
+        /// </summary>
+        /// <param name="name">Name to remove.</param>
+        /// <returns></returns>
+        public PhoneBookEntry GetByName(String name)
+        {
+            return this.PhoneList.FirstOrDefault(n => n.Name == name);
+        }
+
+        /// <summary>
+        /// Removes the first occurrence, if any of a given name. Case sensitive.
         /// </summary>
         /// <param name="name">Name to remove.</param>
         public void DeletePairByName(String name)
         {
-            var item = this.PhoneList.FirstOrDefault(n => n.Name == name);
+            var item = GetByName(name);
             if (item != null)
             {
                 this.PhoneList.Remove(item);

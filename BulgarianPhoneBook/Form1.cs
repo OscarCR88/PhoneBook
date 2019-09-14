@@ -28,10 +28,7 @@ namespace BulgarianPhoneBook
                 try
                 {
                     this.phoneBook.LoadPhoneBook(openFileDialog1.FileName);
-                    phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
-
-                    // Initialize the DataGridView.
-                    dataGridView1.DataSource = phoneBookEntryBindingSource;
+                    InitializeDGV();
                     textBox1.Text = textBox2.Text = "";
                 }
                 catch (SecurityException ex)
@@ -48,12 +45,11 @@ namespace BulgarianPhoneBook
             {
                 var name = textBox2.Text;
                 this.phoneBook.DeletePairByName(name);
-                phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
-                dataGridView1.DataSource = phoneBookEntryBindingSource;
+                InitializeDGV();
             }
             catch (Exception ex)
             {
-                textBox1.Text += ex.Message;
+                textBox1.Text += ex.Message + "\r\n";
             }
         }
 
@@ -67,6 +63,12 @@ namespace BulgarianPhoneBook
             {
                 button2.Enabled = false;
             }
+        }
+
+        private void InitializeDGV()
+        {
+            phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
+            dataGridView1.DataSource = phoneBookEntryBindingSource;
         }
     }
 }
