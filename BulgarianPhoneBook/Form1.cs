@@ -99,9 +99,9 @@ namespace BulgarianPhoneBook
             if (textBox3.Text.Length > 0)
             {
                 var dialedName = textBox3.Text;
-                textBox1.AppendText($"Dialing number: {dialedName} ...\r\n");
-
                 var item = this.phoneBook.GetByName(dialedName);
+                textBox1.AppendText($"Dialing number: {item.Name} ({item.PhoneNumber}) ...\r\n");
+
                 item.DialedTimes++;
             }
         }
