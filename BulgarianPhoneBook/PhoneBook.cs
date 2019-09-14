@@ -33,16 +33,30 @@ namespace BulgarianPhoneBook
 
             foreach (String line in lines)
             {
-                var splitted = line.Split(' ');
+                var splitted = line.Split(',');
                 var name = splitted[0];
-                var number = splitted[1];
+                var number = splitted[1].Trim();
 
-                var entry = new PhoneBookEntry(name, number);
+                AddEntry(name, number);
 
-                this.PhoneList.Add(entry);
             }
         }
 
+        /// <summary>
+        /// Adds a new entry to the PhoneBook.
+        /// </summary>
+        /// <param name="name">Name.</param>
+        /// <param name="number">Phone number.</param>
+        public void AddEntry(String name, String number)
+        {
+            this.PhoneList.Add(new PhoneBookEntry(name, number));
+
+        }
+
+        /// <summary>
+        /// Returns a list with all Phonebook entries.
+        /// </summary>
+        /// <returns></returns>
         public List<PhoneBookEntry> GetEntries()
         {
             return this.PhoneList;
