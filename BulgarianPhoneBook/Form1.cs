@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Security;
 using System.Windows.Forms;
 
@@ -39,6 +40,7 @@ namespace BulgarianPhoneBook
                 var name = textBox2.Text;
                 this.phoneBook.DeletePairByName(name);
                 InitializeDGV();
+                textBox2.Clear();
             }
             catch (Exception ex)
             {
@@ -63,17 +65,24 @@ namespace BulgarianPhoneBook
             var list = this.phoneBook.GetEntries();
             phoneBookEntryBindingSource = new BindingSource(list, null);
             dataGridView1.DataSource = phoneBookEntryBindingSource;
-            textBox3.Text = list[0].PhoneNumber;
+            textBox3.Text = list[0].Name;
+        }
+
+        private void PrintList(List<PhoneBookEntry> list, Boolean isDialedList = false)
+        {
+            var headerText = isDialedList ? $"\r\nMOST DIALED NUMBERS\r\n" : $"\r\nSORTED NUMBER'S LIST\r\n";
+            textBox1.AppendText(headerText);
+            foreach (var item in list)
+            {
+                var text = isDialedList ? $"{item.Name} {item.PhoneNumber} was dialed {item.DialedTimes} times\r\n" : $"{item.Name} {item.PhoneNumber} \r\n";
+                textBox1.AppendText(text);
+            }
         }
 
         private void Button3_Click(object sender, EventArgs e)
         {
             var list = this.phoneBook.GetSortedList();
-
-            foreach (var item in list)
-            {
-                textBox1.AppendText($"{item.Name} {item.PhoneNumber} \r\n");
-            }
+            PrintList(list);
         }
 
         private void DataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -81,7 +90,7 @@ namespace BulgarianPhoneBook
             if (dataGridView1.SelectedRows.Count != 0)
             {
                 DataGridViewRow row = this.dataGridView1.SelectedRows[0];
-                textBox3.Text = row.Cells[1].Value.ToString();
+                textBox3.Text = row.Cells[0].Value.ToString();
             }
         }
 
@@ -89,7 +98,11 @@ namespace BulgarianPhoneBook
         {
             if (textBox3.Text.Length > 0)
             {
-                textBox1.AppendText($"Dialing number: {textBox3.Text} ...\r\n");
+                var dialedName = textBox3.Text;
+                textBox1.AppendText($"Dialing number: {dialedName} ...\r\n");
+
+                var item = this.phoneBook.GetByName(dialedName);
+                item.DialedTimes++;
             }
         }
 
@@ -103,6 +116,17 @@ namespace BulgarianPhoneBook
             {
                 button3.Enabled = button4.Enabled = button5.Enabled = false;
             }
+        }
+
+        private void Button4_Click(object sender, EventArgs e)
+        {
+            var list = this.phoneBook.GetTop5DialedNumbers();
+            PrintList(list, true);
+        }
+
+        private void Button7_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
         }
     }
 }

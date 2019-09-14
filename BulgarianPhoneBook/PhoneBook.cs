@@ -49,6 +49,20 @@ namespace BulgarianPhoneBook
         }
 
         /// <summary>
+        /// Returns top 5 dailed numbers from the list. 
+        /// </summary>
+        /// <param name="sort">Sort direction.</param>
+        /// <returns></returns>
+        public List<PhoneBookEntry> GetTop5DialedNumbers(SortOrder sort = SortOrder.Descending)
+        {
+            if (sort == SortOrder.Ascending)
+            {
+                return this.PhoneList.OrderBy(n => n.DialedTimes).Take(5).ToList();
+            }
+            return this.PhoneList.OrderByDescending(n => n.DialedTimes).Take(5).ToList();
+        }
+        
+        /// <summary>
         /// Returns a sorted list. 
         /// </summary>
         /// <param name="sort">Sort direction.</param>

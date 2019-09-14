@@ -18,6 +18,11 @@ namespace BulgarianPhoneBook
         public String PhoneNumber { get; set; }
 
         /// <summary>
+        /// Holds dialed call counts for this phone number.
+        /// </summary>
+        public int DialedTimes { get; set; }
+
+        /// <summary>
         /// Creates an object of type <see cref="PhoneBookEntry"/>.
         /// </summary>
         /// <param name="name"></param>
