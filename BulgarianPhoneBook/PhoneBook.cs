@@ -34,12 +34,15 @@ namespace BulgarianPhoneBook
             foreach (String line in lines)
             {
                 var splitted = line.Split(',');
-                var name = splitted[0];
-                var number = splitted[1].Trim();
-
-                if (ValidatePhoneNumber(number))
+                if (splitted.Length == 2)
                 {
-                    AddEntry(name, number);
+                    var name = splitted[0];
+                    var number = splitted[1].Trim();
+
+                    if (ValidatePhoneNumber(number))
+                    {
+                        AddEntry(name, number);
+                    }
                 }
 
             }
@@ -82,7 +85,7 @@ namespace BulgarianPhoneBook
             }
             else
             {
-                throw new Exception($"Name: {name} was not found on this PhoneBook");
+                throw new Exception($"Name: {name} was not found on this PhoneBook. Be careful with uppercase/lowercase");
             }
 
         }

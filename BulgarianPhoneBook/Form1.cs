@@ -42,7 +42,7 @@ namespace BulgarianPhoneBook
             }
             catch (Exception ex)
             {
-                textBox1.AppendText( ex.Message + "\r\n");
+                textBox1.AppendText(ex.Message + "\r\n");
             }
         }
 
@@ -60,8 +60,10 @@ namespace BulgarianPhoneBook
 
         private void InitializeDGV()
         {
-            phoneBookEntryBindingSource = new BindingSource(this.phoneBook.GetEntries(), null);
+            var list = this.phoneBook.GetEntries();
+            phoneBookEntryBindingSource = new BindingSource(list, null);
             dataGridView1.DataSource = phoneBookEntryBindingSource;
+            textBox3.Text = list[0].PhoneNumber;
         }
 
         private void Button3_Click(object sender, EventArgs e)
@@ -70,7 +72,36 @@ namespace BulgarianPhoneBook
 
             foreach (var item in list)
             {
-                textBox1.AppendText( $"{item.Name} {item.PhoneNumber} \r\n");
+                textBox1.AppendText($"{item.Name} {item.PhoneNumber} \r\n");
+            }
+        }
+
+        private void DataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count != 0)
+            {
+                DataGridViewRow row = this.dataGridView1.SelectedRows[0];
+                textBox3.Text = row.Cells[1].Value.ToString();
+            }
+        }
+
+        private void Button5_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Length > 0)
+            {
+                textBox1.AppendText($"Dialing number: {textBox3.Text} ...\r\n");
+            }
+        }
+
+        private void TextBox3_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox3.Text.Length > 0)
+            {
+                button3.Enabled = button4.Enabled = button5.Enabled = true;
+            }
+            else
+            {
+                button3.Enabled = button4.Enabled = button5.Enabled = false;
             }
         }
     }
